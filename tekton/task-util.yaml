@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: util
+spec:
+  workspaces:
+    - name: source
+  steps:
+    - name: debug
+      image: registry.access.redhat.com/ubi8-minimal
+      command:
+        - /bin/bash
+        - '-c'
+        - ls /workspace/source
