@@ -35,9 +35,14 @@ spec:
           workspace: data
     - name: debug
       taskRef:
-        name: util
+        name: bash
       runAfter:
         - git-clone
+      params:
+        - name: SCRIPT
+          value: |
+            #!/bin/bash
+            echo "Hello world!"
       workspaces:
         - name: source
           workspace: data

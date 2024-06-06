@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: bash
+spec:
+  description: Execute a given bash shell script
+  params:
+    - description: Target script
+      name: SCRIPT
+      type: string
+  workspaces:
+    - name: source
+  steps:
+    - name: debug
+      image: registry.access.redhat.com/ubi8-minimal
+      command:
+        - /bin/bash
+        - '-c'
+        - echo $(params.SCRIPT) > /tmp/target; chmod +x /tmp/target; /tmp/target
